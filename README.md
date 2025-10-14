@@ -1,64 +1,93 @@
-<<<<<<< HEAD
-# LoginLaravel
-Proyecto donde creo un entorno MVC con el framework laravel y sincronización con wamp para hacer login desde el servidor laravel.
-=======
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Prerequisites
+▪ 🐘 PHP version 8.0 or higher.
+▪ ⚙️ Latest stable version of Composer.
+▪ 🔺 Laravel installer or create a Laravel project new / composer create-project.
+▪ 💻 Local web server package WampServer.
+▪ 🌐 Web server: Apache.
+▪ 🐬 Running MySQL database.
+▪ 📝 Code editor (Visual Studio Code.
+▪ 💻 Operating system: Windows 10
+▪ Include technology icons.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Introducción
 
-## About Laravel
+Este laboratorio tiene como objetivo implementar un sistema de **autenticación de usuarios** utilizando Laravel.  
+El proyecto sigue la arquitectura **MVC (Modelo-Vista-Controlador)**:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Modelos:** Representan las entidades y se encargan de la lógica relacionada a la base de datos (por ejemplo, `User.php`).  
+- **Vistas:** Archivos Blade (`.blade.php`) que representan la interfaz visual para el usuario.  
+- **Controladores:** Gestionan la lógica de negocio y coordinan la interacción entre modelos y vistas (por ejemplo, `AuthController`).  
+- **Rutas:** Definen la URL y la acción asociada en los controladores (`routes/web.php`).
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Flujo de instalación y comandos utilizados
 
-## Learning Laravel
+### **Opción 1: Laravel UI**
+powershell | bash
+- Instalar Laravel/UI
+composer require laravel/ui
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Generar scaffolding de autenticación con Bootstrap
+php artisan ui bootstrap --auth
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- Instalar dependencias de Node y compilar assets
+npm install
+npm run dev
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Crear las tablas definidas en las migraciones
+php artisan migrate
 
-## Laravel Sponsors
+- Limpiar cache de configuración (si es necesario)
+php artisan config:cache
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- Resultado visual
+La imagen muestra la página de login generada automáticamente con Laravel Breeze/UI, incluyendo registro y recuperación de contraseña.
 
-### Premium Partners
+## Base de datos
+Servidor: MySQL (WampServer)
+Archivo de configuración: .env
+.env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=login_laravel
+DB_USERNAME=root
+DB_PASSWORD=
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+# Migraciones utilizadas:
+- users
+- password_resets
+- failed_jobs
 
-## Contributing
+# Comando para ejecutar migraciones
+- php artisan migrate
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Dificultades y soluciones
+Problema1:
+- Error SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost'
+Solución:
+- Verificar usuario y contraseña en .env y reiniciar servidor MySQL.
+Problema2:
+- Problemas con compilación de assets (npm run dev)
+Solución:
+- Instalar Node.js y npm correctamente y permitir la ejecución de scripts en
+Problema3:
+- PowerShell (Set-ExecutionPolicy RemoteSigned).
+Solución:
+- Carpeta .git embebida dentro del proyecto	Quitar el subrepositorio con git rm --cached <carpeta> para evitar errores al hacer push.
 
-## Code of Conduct
+## Referencias
+- [Documentación oficial de Laravel](https://laravel.com/docs/10.x)
+- [Laravel Breeze](https://laravel.com/docs/10.x/starter-kits#breeze-and-blade)
+- [Laravel UI](https://laravel.com/docs/10.x/frontend#laravel-ui)
+- [PHP 8](https://www.php.net/releases/8.0/)
+- [MySQL](https://chatgpt.com/c/68edaef3-fc98-8328-9a9b-474e49751430)
+- [Visual Studio Code](https://chatgpt.com/c/68edaef3-fc98-8328-9a9b-474e49751430)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Objetivo del laboratorio
+El objetivo principal fue implementar autenticación básica en Laravel, comprendiendo la interacción entre controladores, modelos, vistas y rutas, gestionar migraciones, configurar la base de datos y desplegar el proyecto localmente usando WampServer.
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
 ## License
 
